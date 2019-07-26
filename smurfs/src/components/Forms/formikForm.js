@@ -1,7 +1,7 @@
 import { withFormik, Form, Field } from "formik";
-import {addSmurf} from "../actions/action"
-import React from "react"
-import ReactDOM from "react-dom"
+import { addSmurf } from "../actions/action";
+import React from "react";
+import ReactDOM from "react-dom";
 
 function addSmurfForm() {
   return (
@@ -22,20 +22,20 @@ function addSmurfForm() {
   );
 }
 
-const FormikForm = withFormik ({
-    mapPropsToValues({name, age, height}){
-        return {
-            name: name || "",
-            age: age || "",
-            height: height || ""
-        }
-    },
-    handleSubmit(values, {resetForm, props}) {
-        console.log("props on handleSubmit")
-        console.log(props)
-        props.addSmurf(values);
-        resetForm();
-    }
-})(addSmurfForm)
+const FormikForm = withFormik({
+  mapPropsToValues({ name, age, height }) {
+    return {
+      name: name || "",
+      age: age || "",
+      height: height || ""
+    };
+  },
+  handleSubmit(values, { resetForm, props }) {
+    console.log("props on handleSubmit");
+    console.log(props);
+    props.addSmurf(values);
+    resetForm();
+  }
+})(addSmurfForm);
 
-export default FormikForm
+export default FormikForm;
