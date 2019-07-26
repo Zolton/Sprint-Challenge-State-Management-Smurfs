@@ -1,26 +1,43 @@
 import React, { Component } from "react";
 import "./App.css";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
+import { GET_SMURF } from "./actions/action";
 
-function App () {
+function App(props) {
+  const fetchSmurfs = () => {
+    props.GET_SMURF();
+  };
 
-const fetchSmurfs = () => {
-  return <></>
+  return (
+    <div className="App">
+      <button
+        onClick={() => {
+          fetchSmurfs();
+        }}
+      >
+        Click Me to Fetch the Smurfs
+      </button>
+      {props.smurfs ? (
+        props.smurfs.map(smurf => 
+        <>
+        <h3>Name: {smurf.name}</h3>
+        <h3>Age: {smurf.age}</h3>
+        <h3>Height: {smurf.height}</h3>
+        </>)
+      ) : (
+        <h1> Loading, please wait</h1>
+      )}
+    </div>
+  );
 }
 
-    return (
-      <div className="App">
-        Hello from App
-        <button onClick={()=>{fetchSmurfs()}}>Click Me to Fetch the Smurfs</button>
-      </div>
-    );
-  }
+const mapStateToProps = state => {
+  return {
+    smurfs: state.smurfs
+  };
+};
 
-  const mapStateToProps = state => {
-    return {
-      smurfs: state.smurfs
-    }
-  }
-
-
-export default connect(mapStateToProps, {})(App)
+export default connect(
+  mapStateToProps,
+  { GET_SMURF }
+)(App);
