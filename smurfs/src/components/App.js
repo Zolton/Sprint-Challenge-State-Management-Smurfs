@@ -5,7 +5,6 @@ import { GET_SMURF, addSmurf, deleteSmurf } from "./actions/action";
 import FormikForm from "./Forms/formikForm";
 
 function App(props) {
-  
   const fetchSmurfs = () => {
     props.GET_SMURF();
   };
