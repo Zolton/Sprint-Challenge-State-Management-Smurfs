@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { GET_SMURF } from "./actions/action";
+import { GET_SMURF, addSmurf } from "./actions/action";
+import FormikForm from "./Forms/formikForm"
 
 function App(props) {
+
   const fetchSmurfs = () => {
     props.GET_SMURF();
+ 
   };
+
+
 
   return (
     <div className="App">
       <button
         onClick={() => {
-          fetchSmurfs();
+          fetchSmurfs()
         }}
       >
         Click Me to Fetch the Smurfs
@@ -27,6 +32,9 @@ function App(props) {
       ) : (
         <h1> Loading, please wait</h1>
       )}
+      <FormikForm addSmurf={props.addSmurf} />
+      {console.log("props on app")}
+      {console.log(props)}
     </div>
   );
 }
@@ -39,5 +47,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { GET_SMURF }
+  { GET_SMURF, addSmurf }
 )(App);
